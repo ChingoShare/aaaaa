@@ -1,6 +1,8 @@
 import { createStore, mapState } from 'vuex'
 import { last, shuffle } from 'lodash';
-export default createStore({
+
+const memoryGame = {
+  namespaced: true,
   state: {
     cardList: [
       { img: "img/alex.jpg", name: "alex", rotate: true, id: 1 },
@@ -111,5 +113,11 @@ export default createStore({
   actions: {
   },
   modules: {
+  }
+}
+
+export default createStore({
+  modules: {
+    memoryGame: memoryGame
   }
 })
