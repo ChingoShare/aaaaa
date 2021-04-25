@@ -1,40 +1,34 @@
 <template>
-  <div class="card" v-for="item of response" :key="item.id">
-    <img src="img/flat.png" :alt="item.attributes.title">
-    <p class="title">{{item.attributes.title}}</p>
-    <p>{{item.attributes.rooms}}-комнатная, {{item.attributes.area}} {{item.attributes.unit}}.</p>
-    <p>г.{{item.attributes.address.city}}
-      ул.{{item.attributes.address.street}}
-      д.{{item.attributes.address.house}}
-      кв.{{item.attributes.address.room}}
+  <div class="card" :key="flat.id">
+    <img src="img/flat.png" :alt="flat.attributes.title">
+    <p class="title">{{flat.attributes.title}}</p>
+    <p>{{flat.attributes.rooms}}-комнатная, {{flat.attributes.area}} {{flat.attributes.unit}}.</p>
+    <p>г.{{flat.attributes.address.city}}
+      ул.{{flat.attributes.address.street}}
+      д.{{flat.attributes.address.house}}
+      кв.{{flat.attributes.address.room}}
     </p>
     <p>
-      {{item.relationships.attributes.first_name}}
-      {{item.relationships.attributes.middle_name}}
-      {{item.relationships.attributes.last_name}}
+      {{flat.relationships.attributes.first_name}}
+      {{flat.relationships.attributes.middle_name}}
+      {{flat.relationships.attributes.last_name}}
     </p>
-    <p class="like" v-bind:class="{red: item.like}" @click="item.like = !item.like">❤️</p>
+    <p class="like" v-bind:class="{red: flat.like}" @click="toggleLike(flat.id, !flat.like)">❤️</p>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: 'Card',
-  computed: {
-    ...mapState('card', [
-      'response'
-    ])
-  },
+  props: ['flat'],
   methods: {
-    ...mapActions ('card', [
-      'get'
-    ])
+    toggleLike(id, value) {
+      this.like({ id, value });
+    },
+    ...mapActions('flats', ['like'])
   },
-  mounted () {
-    this.get ();
-  }
 }
 </script>
 
