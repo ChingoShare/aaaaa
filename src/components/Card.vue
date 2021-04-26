@@ -13,7 +13,7 @@
       {{flat.relationships.attributes.middle_name}}
       {{flat.relationships.attributes.last_name}}
     </p>
-    <p class="like" v-bind:class="{red: flat.like}" @click="toggleLike(flat.id, !flat.like)">❤️</p>
+    <p class="like" v-bind:class="{red: flat.like}" @click="toggleLike(flat.id, !flat.like)"><i class="fas fa-heart"></i></p>
   </div>
 </template>
 

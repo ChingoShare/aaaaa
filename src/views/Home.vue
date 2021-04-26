@@ -1,6 +1,6 @@
 <template>
   <article v-if="!loading">
-    <Card :flat="flat" v-for="flat in items" />
+    <Card :flat="flat" v-for="flat in items" :key="flat.id" />
   </article>
   <h1 v-if="loading">Загрузка...</h1>
 </template>
